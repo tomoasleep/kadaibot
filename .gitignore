@@ -15,4 +15,8 @@
 /tmp
 
 *~
-
+_Store
+log/*.log
+tmp/**/*
+db/schema.rb
+*.swp
