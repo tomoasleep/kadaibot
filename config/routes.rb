@@ -1,6 +1,11 @@
 Kadaibot::Application.routes.draw do
+
   resources :reports
 
+  devise_for :admins, only: [:session] do 
+    get '/sign_in', :to => 'devise/sessions#new', :as => :new_admin_session
+    get "/sign_out", to: "devise/sessions#destroy", as: "destroy_admin_session"
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -51,7 +56,7 @@ Kadaibot::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   # root :to => 'welcome#index'
-  root to: 'reports#index'
+  root :to => 'reports#index'
 
   # See how all your routes lay out with "rake routes"
 

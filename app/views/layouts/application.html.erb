@@ -7,6 +7,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+<ul> 
+  <% if admin_signed_in? %>
+    <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
+  <% else %>
+    <li><%= link_to "ログイン", destroy_admin_session_path  %></li>
+  <% end %>
+</ul>
 
 <%= yield %>
 
