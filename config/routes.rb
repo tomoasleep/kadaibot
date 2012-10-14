@@ -2,9 +2,13 @@ Kadaibot::Application.routes.draw do
 
   resources :reports
 
-  devise_for :admins, only: [:session] do 
-    get '/sign_in', :to => 'devise/sessions#new', :as => :new_admin_session
-    get "/sign_out", to: "devise/sessions#destroy", as: "destroy_admin_session"
+  devise_for :admins, only: [:session] do
+    namespace :admins do
+      get '/sign_in', :to => 'devise/sessions#new', :as => :new_admin_session
+      get "/sign_out", to: "devise/sessions#destroy", as: "destroy_admin_session"
+      #get '/sign_up', :to => 'devise/registrations#new', :as => :new_admin_registration
+      #post '/', :to => 'devise/registrations#create', :as => :admin_registration
+    end
   end
   # The priority is based upon order of creation:
   # first created -> highest priority.
