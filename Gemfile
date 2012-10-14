@@ -24,8 +24,12 @@ gem 'jquery-rails'
 gem "twitter-bootstrap-rails"
 gem 'twitter'
 gem 'oauth'
-gem 'get-twitter-oauth-token'
+
 gem 'tapp'
+gem 'mechanize'
+gem 'sanitize'
+gem 'horai'
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
