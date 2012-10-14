@@ -6,7 +6,6 @@ gem 'rails', '3.2.8'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 
-#gem 'sqlite3'
 
 
 # Gems used only for assets and not required
@@ -32,6 +31,14 @@ gem 'sanitize'
 gem 'horai'
 
 gem 'devise'
+
+group :development do
+  gem 'sqlite3'
+end
+
+group :production do
+  gem "pg"
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
