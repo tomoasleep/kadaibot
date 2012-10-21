@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 
 task :kisojikken => :environment do
-  0.upto(3) do |i|
+  0.upto(ENV["KISOJIKKEN_MAX"]) do |i|
     break unless scraping(i) 
   end
 end
