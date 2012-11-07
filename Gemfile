@@ -26,6 +26,9 @@ gem 'twitter'
 gem 'oauth'
 
 gem 'tapp'
+gem "pry-remote"
+gem "pry-debugger"
+gem "pry-stack_explorer"
 gem 'mechanize'
 gem 'sanitize'
 gem 'horai'

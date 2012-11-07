@@ -1,17 +1,30 @@
 # -*- coding:utf-8 -*-
 
 task :kisojikken => :environment do
-  0.upto(ENV["KISOJIKKEN_MAX"].to_i) do |i|
-    break unless scraping(i) 
+
+  target = ["c", "scheme", "ad"]
+  target.each do |w|
+    notfailed = true 
+    0.upto(ENV["KISOJIKKEN_MAX"].to_i) do |i|
+      if scraping(i, :target_name => w) 
+        notfailed = true
+      else
+        break unless notfailed
+        notfailed = false
+      end
+    end
   end
 end
 
-def scraping(number)
+def scraping(number, options = {})
+  options = {
+    :target_name => "c"
+  }.merge(options)
   begin 
     agent = Mechanize.new 
 
     # scraping
-    doc = agent.get("http://hagi.is.s.u-tokyo.ac.jp/kisojikken/c#{number}.html")
+    doc = agent.get("http://hagi.is.s.u-tokyo.ac.jp/kisojikken/#{options[:target_name]}#{number}.html")
     titles = doc.search("h3.number")
     problems = doc.search("div.problem")
 
@@ -29,10 +42,11 @@ def scraping(number)
     end
 
     return true 
+  rescue SocketError
+    return false
   rescue Mechanize::Error
     return false
-  end
-
+  end 
 
 end
 
