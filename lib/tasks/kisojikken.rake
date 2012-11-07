@@ -2,7 +2,7 @@
 
 task :kisojikken => :environment do
 
-  target = ["c", "scheme", "ad"]
+  target = ["c", "s", "ad"]
   target.each do |w|
     notfailed = true 
     0.upto(ENV["KISOJIKKEN_MAX"].to_i) do |i|
