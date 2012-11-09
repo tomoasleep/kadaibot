@@ -37,10 +37,16 @@ def scraping(number, options = {})
         deadline: Report.stodatetime(problems[i].search("p.deadline").first.content.gsub(/^締切:/, "").tapp),
         link: doc.uri.to_s.tapp
       }
-      repo = Report.new(attrs).tapp{|r| r.inspect}
-      repo.save if Report.where("name = ? and link = ?", repo.name, repo.link).empty?
+      next if attrs[:deadline] < Time.now
+      if (repos = Report.where("name = ? and link = ?", attrs[:name], attrs[:link])).empty?
+        repo = Report.new(attrs).tapp{|r| r.inspect}
+        repo.save
+        p "save: #{repo.inspect}"
+      else
+        repos.update_all(attrs)
+        p "update: #{repos.inspect}"
+      end
     end
-
     return true 
   rescue SocketError
     return false
