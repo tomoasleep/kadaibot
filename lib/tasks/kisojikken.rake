@@ -1,5 +1,6 @@
 # -*- coding:utf-8 -*-
 
+desc "scraping"
 task :kisojikken => :environment do
 
   target = ["c", "s", "ad", "sicp"]
